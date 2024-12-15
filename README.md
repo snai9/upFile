@@ -17,7 +17,8 @@
 
 
 
-### 3. ```python
+### 3.
+```python
 result = os.system(r"D:\\python学习\\自动化测试\\upfile.exe")
             if result == 0:
                 print("点击上传成功")  # 打印成功信息
