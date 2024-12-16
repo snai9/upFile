@@ -1,0 +1,10 @@
+import winex
+import winex.mouse
+var hwndParent = winex.find("\#\x+","打开");
+var hwndF = winex.findEx(hwndParent,,"Edit","");
+winex.sendString("C:\0.jpg",hwndF);
+var hwndO = winex.findEx(hwndParent,,"Button","打开");
+winex.click(hwndO);
+/*
+return win.loopMessage();
+*/
