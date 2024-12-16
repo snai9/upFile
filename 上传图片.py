@@ -46,7 +46,7 @@ class TestAlert(Base):  # 定义TestAlert类，继承Base类
                     (By.XPATH, "//*/div[3]/div[2]/div[2]/div/div[1]"))
             ).click()  # 点击上传按钮
             time.sleep(2)  # 暂停2秒
-            result = os.system(r"D:\\python学习\\自动化测试\\pfile.exe")
+            result = os.system(r"D:\\python学习\\自动化测试\\upfile.exe")
             if result == 0:
                 logging.error("点击上传成功")  # 打印成功信息
             else:
