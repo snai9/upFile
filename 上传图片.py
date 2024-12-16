@@ -1,6 +1,6 @@
 import os  # 导入os模块，用于操作系统功能
 import time  # 导入time模块，用于时间相关操作
-
+import logging
 from selenium import webdriver  # 导入webdriver模块
 from selenium.webdriver.common.by import By  # 导入定位元素的By类
 from selenium.webdriver.support import expected_conditions as EC  # 导入预期条件模块
@@ -52,10 +52,14 @@ class TestAlert(Base):  # 定义TestAlert类，继承Base类
             else:
                 print("上传失败，错误代码:", result)
 
+        except NoSuchElementException as e:
+            logging.error(f"Element not found: {e}")
+        except TimeoutException as e:
+            logging.error(f"Timeout error: {e}")
         except Exception as e:  # 捕获异常
-            print(f"Error occurred: {e}")  # 打印错误信息
-            print("Exception type:", type(e))
-            print("Exception args:", e.args)
+            logging.error(f"Error occurred: {e}")  # 打印错误信息
+            logging.error("Exception type:", type(e))
+            logging.error("Exception args:", e.args)
 
         finally:
             time.sleep(10)
