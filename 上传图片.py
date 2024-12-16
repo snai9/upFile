@@ -26,8 +26,8 @@ class Base():  # 定义Base类
         self.driver.quit()  # 关闭浏览器
 
 
-class TestAlert(Base):  # 定义TestAlert类，继承Base类
-    def test_upload(self):  # 定义测试上传的方法
+class TestUpload(Base):  # 定义TestUpload类，继承Base类
+    def upload(self):  # 定义上传的方法
         self.setup()  # 调用setup方法，初始化浏览器
         self.driver.get("https://image.baidu.com/")  # 打开百度图片网站
 
@@ -72,5 +72,5 @@ if __name__ == "__main__":  # 主程序入口
                     format='%(asctime)s - %(levelname)s - %(message)s',
                     filename='test.log',  # 日志文件名
                     filemode='a')  # 追加模式
-    test = TestAlert()  # 实例化TestAlert类
-    test.test_upload()  # 调用测试上传的方法
+    test = TestUpload()  # 实例化TesUpload类
+    test.upload()  # 调用测试上传的方法
