@@ -4,11 +4,16 @@
 
 ## 自动上传图片
 
-### 1. os.getenv("browser")
+### 1. 类的用法
+- 通过继承一个基类Base来初始化浏览器环境，并在测试方法test_upload中实现具体的测试逻辑。
+- 可以这样理解，在类中定义的函数称作方法，区别是方法通常会用到 self 参数来访问类的属性和方法
+- 方法的第一个参数是self，表示类的实例化对象
+
+### 2. os.getenv("browser")
 - 首先要在终端中运行set browser=edge
 - 也可以在代码中直接os.environ['browser'] = 'edge'，不过是一次性的
 
-### 2. 上传按钮
+### 3. 上传按钮
 - 元素查找，上传按钮如果是input，可对用内置的sendkeys(r"c:\0.jpg")上传文件，r是防止转义
 - 本例中的上传按钮是div,不能使用sendkeys(r"c:\0.jpg")上传文件,所以用aardio写了该功能  
 -- 使用aardio注意：  
@@ -17,7 +22,7 @@
 
 
 
-### 3.灵活使用函数的返回值
+### 4.灵活使用函数的返回值
 ```python
 result = os.system(r"D:\\python学习\\自动化测试\\upfile.exe")
             if result == 0:
@@ -28,7 +33,7 @@ result = os.system(r"D:\\python学习\\自动化测试\\upfile.exe")
 - 不用result会造成不管upfile.exe执行与否，都会直接打印“上传成功”。
 - 函数或方法返回值正常都应该为0
 
-### 4.使用日志记录库（如Python的标准库logging）来记录测试过程中的重要信息，而不仅仅是打印到控制台。
+### 5.使用日志记录库（如Python的标准库logging）来记录测试过程中的重要信息，而不仅仅是打印到控制台。
 ```python
 logging.basicConfig(level=logging.ERROR,  # 设置日志级别
                     format='%(asctime)s - %(levelname)s - %(message)s',
