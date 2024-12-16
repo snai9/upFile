@@ -4,8 +4,8 @@ import logging
 from selenium import webdriver  # 导入webdriver模块
 from selenium.webdriver.common.by import By  # 导入定位元素的By类
 from selenium.webdriver.support import expected_conditions as EC  # 导入预期条件模块
-from selenium.webdriver.support.ui import \
-    WebDriverWait  # 导入WebDriverWait类，用于等待元素
+from selenium.webdriver.support.ui import WebDriverWait  # 导入WebDriverWait类，用于等待元素
+from selenium.common.exceptions import NoSuchElementException, TimeoutException  # 导入异常类
 
 
 class Base():  # 定义Base类
@@ -46,11 +46,11 @@ class TestAlert(Base):  # 定义TestAlert类，继承Base类
                     (By.XPATH, "//*/div[3]/div[2]/div[2]/div/div[1]"))
             ).click()  # 点击上传按钮
             time.sleep(2)  # 暂停2秒
-            result = os.system(r"D:\\python学习\\自动化测试\\upfile.exe")
+            result = os.system(r"D:\\python学习\\自动化测试\\pfile.exe")
             if result == 0:
-                print("点击上传成功")  # 打印成功信息
+                logging.error("点击上传成功")  # 打印成功信息
             else:
-                print("上传失败，错误代码:", result)
+                logging.error(f"上传失败，错误代码: {result}")
 
         except NoSuchElementException as e:
             logging.error(f"Element not found: {e}")
@@ -58,8 +58,8 @@ class TestAlert(Base):  # 定义TestAlert类，继承Base类
             logging.error(f"Timeout error: {e}")
         except Exception as e:  # 捕获异常
             logging.error(f"Error occurred: {e}")  # 打印错误信息
-            logging.error("Exception type:", type(e))
-            logging.error("Exception args:", e.args)
+            logging.error(f"Exception type: {type(e)}")
+            logging.error(f"Exception args: {e.args}")
 
         finally:
             time.sleep(10)
@@ -68,5 +68,9 @@ class TestAlert(Base):  # 定义TestAlert类，继承Base类
 
 
 if __name__ == "__main__":  # 主程序入口
+    logging.basicConfig(level=logging.ERROR,  # 设置日志级别
+                    format='%(asctime)s - %(levelname)s - %(message)s',
+                    filename='test.log',  # 日志文件名
+                    filemode='a')  # 追加模式
     test = TestAlert()  # 实例化TestAlert类
     test.test_upload()  # 调用测试上传的方法
