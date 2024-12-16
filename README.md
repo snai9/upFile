@@ -17,7 +17,7 @@
 
 
 
-### 3.
+### 3.灵活使用函数的返回值
 ```python
 result = os.system(r"D:\\python学习\\自动化测试\\upfile.exe")
             if result == 0:
@@ -27,6 +27,23 @@ result = os.system(r"D:\\python学习\\自动化测试\\upfile.exe")
 ```
 - 不用result会造成不管upfile.exe执行与否，都会直接打印“上传成功”。
 - 函数或方法返回值正常都应该为0
+
+### 4.使用日志记录库（如Python的标准库logging）来记录测试过程中的重要信息，而不仅仅是打印到控制台。
+```python
+logging.basicConfig(level=logging.ERROR,  # 设置日志级别
+                    format='%(asctime)s - %(levelname)s - %(message)s',
+                    filename='test.log',  # 日志文件名
+                    filemode='a')  # 追加模式
+```
+- 详细和可配置的日志记录：logging库提供了详细的日志级别（如DEBUG、INFO、WARNING、ERROR、CRITICAL），可以根据需要配置不同的日志级别，从而在不同测试阶段查看不同级别的日志信息。
+
+- 灵活性和可扩展性：logging库支持多种日志处理器（如文件处理器、控制台处理器等），可以根据需要将日志输出到文件、控制台或其他目的地。
+
+- 调试和故障排除：在调试过程中，可以使用不同的日志级别来记录不同层次的信息。例如，在调试阶段可以设置为DEBUG级别，记录更多的详细信息，而在生产环境中可以设置为WARNING或ERROR级别，只记录重要的错误信息。
+
+- 日志格式化：logging库支持自定义日志格式，可以记录更多的信息，如时间戳、日志级别、模块名、函数名等，便于后续分析。
+
+- 易于读取和分析：日志文件通常格式化良好，便于阅读和分析。这对于长时间运行的测试或复杂的生产环境非常有用。
 
 
 
