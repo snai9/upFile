@@ -8,24 +8,24 @@ from selenium.webdriver.support.ui import WebDriverWait  # 导入WebDriverWait�
 from selenium.common.exceptions import NoSuchElementException, TimeoutException  # 导入异常类
 
 
-class Base():  # 定义Base类
-    def setup(self):  # 设置浏览器环境
-        browser = os.getenv("browser")  # 获取环境变量中的浏览器类型
-        if browser == 'edge':  # 如果浏览器为Edge
-            self.driver = webdriver.Edge()  # 初始化Edge浏览器
-        elif browser == 'headless':  # 如果浏览器为无头模式
-            options = webdriver.ChromeOptions()  # 创建Chrome选项
-            options.add_argument('--headless')  # 添加无头参数
-            self.driver = webdriver.Chrome(options=options)  # 初始化无头Chrome浏览器
-        else:  # 默认使用Chrome浏览器
-            self.driver = webdriver.Chrome()  # 初始化Chrome浏览器
-        self.driver.implicitly_wait(5)  # 设置隐式等待时间
-        self.driver.maximize_window()  # 最大化浏览器窗口
+# class Base():  # 定义Base类
+#     def setup(self):  # 设置浏览器环境
+#         browser = os.getenv("browser")  # 获取环境变量中的浏览器类型
+#         if browser == 'edge':  # 如果浏览器为Edge
+#             self.driver = webdriver.Edge()  # 初始化Edge浏览器
+#         elif browser == 'headless':  # 如果浏览器为无头模式
+#             options = webdriver.ChromeOptions()  # 创建Chrome选项
+#             options.add_argument('--headless')  # 添加无头参数
+#             self.driver = webdriver.Chrome(options=options)  # 初始化无头Chrome浏览器
+#         else:  # 默认使用Chrome浏览器
+#             self.driver = webdriver.Chrome()  # 初始化Chrome浏览器
+#         self.driver.implicitly_wait(5)  # 设置隐式等待时间
+#         self.driver.maximize_window()  # 最大化浏览器窗口
 
-    def teardown(self):  # 清理操作
-        self.driver.quit()  # 关闭浏览器
-
-
+#     def teardown(self):  # 清理操作
+#         self.driver.quit()  # 关闭浏览器
+# 由于经常要用，索性学习着把Base类单独拿出去，谁用谁导入就行了
+from base import Base
 class TestUpload(Base):  # 定义TestUpload类，继承Base类
     def upload(self):  # 定义上传的方法
         self.setup()  # 调用setup方法，初始化浏览器
