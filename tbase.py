@@ -2,7 +2,7 @@ import os  # 导入os模块，用于操作系统功能
 from selenium import webdriver  # 导入webdriver模块
 
 
-class Base():  # 定义Base类
+class Tbase():  # 定义Base类
     def setup(self):  # 设置浏览器环境
         browser = os.getenv("browser")  # 获取环境变量中的浏览器类型
         if browser == 'edge':  # 如果浏览器为Edge
