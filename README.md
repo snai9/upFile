@@ -50,6 +50,13 @@ logging.basicConfig(level=logging.ERROR,  # 设置日志级别
 
 - 易于读取和分析：日志文件通常格式化良好，便于阅读和分析。这对于长时间运行的测试或复杂的生产环境非常有用。
 
+## 窗口切换
+### 1.```python
+new_window = [window for window in self.driver.window_handles if window != original_window][0]
+```
+这里复习一下列表推导式的用法
+### 2.切换到原窗口是关键，方法也很多
+
 
 
 
