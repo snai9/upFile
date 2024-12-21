@@ -8,7 +8,7 @@ from selenium.webdriver.support.ui import WebDriverWait  # 导入WebDriverWait�
 from selenium.common.exceptions import NoSuchElementException, TimeoutException  # 导入异常类
 
 
-# class Base():  # 定义Base类
+# class Tbase():  # 定义Tbase类
 #     def setup(self):  # 设置浏览器环境
 #         browser = os.getenv("browser")  # 获取环境变量中的浏览器类型
 #         if browser == 'edge':  # 如果浏览器为Edge
@@ -24,8 +24,8 @@ from selenium.common.exceptions import NoSuchElementException, TimeoutException 
 
 #     def teardown(self):  # 清理操作
 #         self.driver.quit()  # 关闭浏览器
-# 由于经常要用，索性学习着把Base类单独拿出去，谁用谁导入就行了
-from base import Base
+# 由于经常要用，索性学习着把Tbase类单独拿出去，谁用谁导入就行了
+from tbase import Tbase
 class TestUpload(Base):  # 定义TestUpload类，继承Base类
     def upload(self):  # 定义上传的方法
         self.setup()  # 调用setup方法，初始化浏览器
