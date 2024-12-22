@@ -57,6 +57,11 @@ new_window = [window for window in self.driver.window_handles if window != origi
 ```
 
 ### 2.切换到原窗口是关键，方法也很多
+```python
+original_window = self.driver.window_handles[0] #原始窗口
+self.driver.switch_to.window(self.driver.window_handles[-1]) #切换到新窗口
+```
+-比列表推导式更简单，但只适合窗口较少，不需要频繁切换的情景
 
 
 
