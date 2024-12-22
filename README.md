@@ -61,7 +61,33 @@ new_window = [window for window in self.driver.window_handles if window != origi
 original_window = self.driver.window_handles[0] #原始窗口
 self.driver.switch_to.window(self.driver.window_handles[-1]) #切换到新窗口
 ```
--比列表推导式更简单，但只适合窗口较少，不需要频繁切换的情景
+- 比列表推导式更简单，但只适合窗口较少，不需要频繁切换的情景
+
+### 3.再来段通过上下文管理器来处理的
+```python
+class WindowSwitcher:
+    def __init__(self, driver, original_window):
+        self.driver = driver
+        self.original_window = original_window
+
+    def __enter__(self):
+        new_window = [window for window in self.driver.window_handles if window != self.original_window][0]
+        self.driver.switch_to.window(new_window)
+
+    def __exit__(self, exc_type, exc_val, exc_tb):
+        self.driver.switch_to.window(self.original_window)
+
+with WindowSwitcher(self.driver, original_window):
+    self.driver.find_element(By.ID, "TANGRAM__PSP_4__userName").send_keys("sn")
+    time.sleep(5)
+```
+优点：
+- 代码结构清晰，管理窗口切换的逻辑更加明确。
+- 自动处理窗口切换，减少出错的可能性。
+- 适用于需要频繁切换窗口的复杂场景。
+缺点：
+- 代码相对复杂，需要定义额外的类。
+- 对于简单的窗口切换场景可能显得过于复杂。
 
 
 
